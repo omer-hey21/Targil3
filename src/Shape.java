@@ -9,7 +9,7 @@ public abstract class Shape {
 
     public abstract void draw();
     public abstract double getArea();
-    public abstract double getParimeter();
+    public abstract double getPerimeter();
     public abstract double getWidth();
     public abstract double getHeight();
 
