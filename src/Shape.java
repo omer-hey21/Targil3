@@ -13,6 +13,4 @@ public abstract class Shape {
     public abstract double getWidth();
     public abstract double getHeight();
 
-    @Override
-    public static  boolean equals() {
-    }
+    public abstract boolean equals(Object other);
