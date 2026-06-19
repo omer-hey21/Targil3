@@ -19,23 +19,32 @@ public class Rectangle extends Shape {
             System.out.println();
         }
     }
-    public double getArea()
+
+    @Override
+    public double area()
     {
         return this.height *this.height;
     }
-    public double getPerimeter()
+
+    @Override
+    public double perimeter()
     {
         return this.height *2+this.width*2;
     }
+
+    @Override
     public double getWidth()
     {
         return this.width;
     }
+
+    @Override
     public double getHeight()
     {
         return this.height;
     }
 
+    @Override
     public boolean equals(Object other)
     {
         if(other instanceof Rectangle)
