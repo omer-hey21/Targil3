@@ -5,7 +5,6 @@ public abstract class Shape {
     // calc witdth
     // calc height
     // equal (can be sompared)
-    //
 
     public abstract void draw();
     public abstract double getArea();
@@ -15,4 +14,6 @@ public abstract class Shape {
 
     @Override
     public static  boolean equals() {
+
+    }
     }
