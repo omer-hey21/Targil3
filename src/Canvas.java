@@ -9,21 +9,24 @@ public class Canvas {
     {
        this.shapes = new Shape[length][width];
     }
+
     public void addShape(Shape shape, int x, int y)
     {
         this.shapes[x][y] = shape;
     }
+
     public void removeShape(int x, int y)
     {
         this.shapes[x][y] = null;
     }
+
     public double getTotalArea()
     {   double sum = 0.0;
         for(int i = 0; i < this.shapes.length; i++)
         {
             for (int j = 0; j < this.shapes[0].length;j++)
             {
-                sum += this.shapes[i][j].getArea();
+                sum += this.shapes[i][j].area();
             }
         }
         return sum;
@@ -46,7 +49,6 @@ public class Canvas {
     public boolean equals(Object other) {
         if (other instanceof Canvas otherCanvas) {
             // instead of casting everytime - trick of the new version of JAVA
-
 
             // check if they have the same row num
             if(this.shapes.length != otherCanvas.shapes.length) {
@@ -77,9 +79,98 @@ public class Canvas {
                     }
                 }
             }
-            return true;
+            return true; // they are equal!
             }
-        return false;
+        return false; // not an instance of canvas... error!
+        }
 
+
+        // a function that get the max height of the shapes in curr row
+        private int getMaxHeightInRow(Shape[] currRowShapes) {
+            if (currRowShapes == null) {
+                return 0; // edge case of no shape
+            }
+            int currMax = 0;
+            for (int i = 0; i < currRowShapes.length; i++) {
+                if (currRowShapes[i].getHeight() > currMax) {
+                    currMax = currRowShapes[i].getHeight();
+                }
+            }
+            return currMax;
+        }
+
+
+        // a function that get the max width of all shapes in canvas
+        private int getMaxWidthInCanvas() {
+            int max = 0;
+            for(int i = 0; i < shapes.length; i++) { // every row of shapes
+                for (int j = 0; j < shapes[i].length; j++) {
+                    if (shapes[i][j] != null) {
+                        if (shapes[i][j].getWidth() > max) {
+                            max = shapes[i][j].getWidth();
+                        }
+                    }
+                }
+            }
+            return max;
+        }
+
+
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+
+            // getting the max width of the canvas
+            int maxWidth = getMaxWidthInCanvas();
+
+            // first we need to find the max shape height in the canvas
+            for (int i = 0; i < shapes.length; i++) {
+                int maxLinesInRow = getMaxHeightInRow(shapes[i]);
+
+                if (maxLinesInRow == 0) {
+                    // no shapes in this line - need to print an empty line
+                    sb.append("\n");
+                    continue; // go to the next line
+                }
+
+                // for this "row of shapes" run on every line (of text...)
+                for (int currLine = 0; currLine < maxLinesInRow; currLine++) {
+
+                    // go on every shape in this curr line and print its curr row
+                    for (int j = 0; j < shapes[i].length; j++) {
+                        Shape currShape = shapes[i][j];
+                        if (currShape == null) {
+                            // if shape is empty - print spaces by the maxWidth*3
+                            sb.append(" ".repeat(maxWidth * 3));
+                            // need to print only spaces - empty shape
+                            // we can and should use .repead(amount)
+                        } else { // actually printing line by line...
+
+                            String[] shapeLines = currShape.toString().split("\n");
+
+                            // try to print currLine if shape is "big enough"
+                            if (shapeLines.length > currLine) {
+                                // there is a line - we can print it
+                                sb.append(shapeLines[currLine]);
+                            } else {
+                                // if currShape is too short we need to print spaces
+                                // the spaces should be by the width of this shape
+                                sb.append(" ".repeat(currShape.getWidth() * 3));
+                            }
+                        }
+
+                        // if we are not at the end of some line - add space divider
+                        if (j < shapes[i].length - 1) {
+                            sb.append("   ");
+                        }
+                    }
+                    // we reached the end of some line - go to the next
+                    sb.append("\n");
+                }
+                // we reached the end of some canvas line of rows - print empty line
+                sb.append("\n");
+            }
+            return sb.toString();
         }
 }

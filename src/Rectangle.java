@@ -33,15 +33,15 @@ public class Rectangle extends Shape {
     }
 
     @Override
-    public double getWidth()
+    public int getWidth()
     {
-        return this.width;
+        return (int) this.width;
     }
 
     @Override
-    public double getHeight()
+    public int getHeight()
     {
-        return this.height;
+        return (int) this.height;
     }
 
     @Override
@@ -53,4 +53,10 @@ public class Rectangle extends Shape {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+    // implement...
+    }
+
 }
