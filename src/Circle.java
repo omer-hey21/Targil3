@@ -1,10 +1,9 @@
-public class Circle extends Shape{
-    private double radius;
+public class Circle extends Shape {
+    private final int radius;
 
-    public Circle (double radius) {
-        // edge case - preventing entering negative radius
-        if (radius < 0 ) {
-            radius = 0; // or throwing some error ???
+    public Circle(int radius) {
+        if (radius < 0) {
+            radius = 0;
         }
         this.radius = radius;
     }
@@ -16,10 +15,10 @@ public class Circle extends Shape{
     public double perimeter() { return this.radius * 2 * Math.PI; }
 
     @Override
-    public int getWidth() { return (int) this.radius * 2; }
+    public int getWidth() { return this.radius * 2; }
 
     @Override
-    public int getHeight() { return (int) this.radius * 2; }
+    public int getHeight() { return this.radius * 2; }
 
     // spacial for the circle class
     // for encapsulation - it should be private static method
@@ -31,8 +30,8 @@ public class Circle extends Shape{
     public String toString()
     {
         double range = this.getHeight(); // same as getHeight()...
-        double xCenter = range / 2;
-        double yCenter = range / 2;
+        double xCenter = (range - 1) / 2.0;
+        double yCenter = (range - 1) / 2.0;
 
         StringBuilder sb = new StringBuilder();
 
@@ -52,19 +51,6 @@ public class Circle extends Shape{
         }
         return sb.toString();
     }
-
-
-    // StringBuilder sb = new StringBuilder();
-    //sb.append(" * "); // מוסיף למחרוזת
-    //sb.append("\n");  // יורד שורה
-    //return sb.toString(); // בסוף, הופך את הכל ל-String אחד רגיל
-
-
-
-    public abstract void drawOnGrid(char[][] grid, int startX, int startY) {
-
-    }
-
 
 
     @Override

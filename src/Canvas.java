@@ -26,11 +26,15 @@ public class Canvas {
         {
             for (int j = 0; j < this.shapes[0].length;j++)
             {
-                sum += this.shapes[i][j].area();
+                if (this.shapes[i][j] != null) {
+                    sum += this.shapes[i][j].area();
+                }
             }
         }
         return sum;
     }
+
+
     public double getTotalPerimeter()
     {
         double sum = 0.0;
@@ -38,12 +42,14 @@ public class Canvas {
         {
             for (int j = 0; j < this.shapes[0].length;j++)
             {
-                sum += this.shapes[i][j].perimeter();
+                if (this.shapes[i][j] != null) {
+                    sum += this.shapes[i][j].perimeter();
+                }
             }
         }
         return sum;
-
     }
+
 
     @Override
     public boolean equals(Object other) {
@@ -92,8 +98,10 @@ public class Canvas {
             }
             int currMax = 0;
             for (int i = 0; i < currRowShapes.length; i++) {
-                if (currRowShapes[i].getHeight() > currMax) {
-                    currMax = currRowShapes[i].getHeight();
+                if (currRowShapes[i] != null) {
+                    if (currRowShapes[i].getHeight() > currMax) {
+                        currMax = currRowShapes[i].getHeight();
+                    }
                 }
             }
             return currMax;
@@ -114,7 +122,6 @@ public class Canvas {
             }
             return max;
         }
-
 
 
         @Override
