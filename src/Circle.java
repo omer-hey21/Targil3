@@ -5,6 +5,7 @@ public class Circle extends Shape {
         if (radius < 0) {
             radius = 0;
         }
+
         this.radius = radius;
     }
 

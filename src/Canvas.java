@@ -16,6 +16,7 @@ public class Canvas {
         this.shapes[x][y] = null;
     }
 
+
     public double getTotalArea()
     {   double sum = 0.0;
         for(int i = 0; i < this.shapes.length; i++)
