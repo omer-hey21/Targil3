@@ -1,6 +1,6 @@
 public class Rectangle extends Shape {
-        private int width;
-        private int height;
+        private final int width;
+        private final int height;
 
     public Rectangle(int width,int height)
     {
@@ -8,17 +8,25 @@ public class Rectangle extends Shape {
         this.width = width;
     }
 
-    public void draw()
+    @Override
+    public String toString()
     {
+
+        StringBuilder sb = new StringBuilder();
+
         for (int i =0; i < height;i++)
         {
-            for (int j =0; j < width;j++)
+            for (int j =0; j < width;j++) // try repeat instead
             {
-                System.out.print(" * ");
+                // System.out.println(" * ");
+                sb.append(" * ");
             }
-            System.out.println();
+            //System.out.println();
+            sb.append("\n");
         }
+        return sb.toString();
     }
+
 
     @Override
     public double area()
@@ -33,16 +41,17 @@ public class Rectangle extends Shape {
     }
 
     @Override
-    public double getWidth()
+    public int getWidth()
     {
-        return this.width;
+        return (int) this.width;
     }
 
     @Override
-    public double getHeight()
+    public int getHeight()
     {
-        return this.height;
+        return (int) this.height;
     }
+
 
     @Override
     public boolean equals(Object other)
