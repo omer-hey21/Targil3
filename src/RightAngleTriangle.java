@@ -1,52 +1,54 @@
 public class RightAngleTriangle extends Shape {    // required attributes: width, hight, slop
-    private double height;
-    private double width;
+    private int height;
+    private int width;
     private double slop;
 
     public RightAngleTriangle(int width, int height) {
         this.width = width;
         this.height = height;
-        this.slop = ((double) this.height - 1) / ((double) this.width - 1) * (-1);
 
     }
 
     @Override
     public void draw() {
-        for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < 1 + slop * i; ++j) {
-                System.out.print("*");
+        int z = 0;
+
+        for (int i = 1; i <= height; ++i) {
+            z = Math.max(1, ((int) ((double) i * width / height)));
+            for (int k = 0; k < z; ++k) {
+                System.out.print(" * ");
+
             }
             System.out.println();
-
         }
     }
 
     @Override
-    public double getArea(RightAngleTriangle this) {
-        return this.width * this.height / 2;
+    public double getArea() {
+        return (double) this.width * (double) this.height / 2;
     }
 
     @Override
-    public double getParimeter() {
-        double hypotenuse_sqr = this.width * this.width + this.height * this.height;
-        double hypotenuse = Math.sqrt(hypotenuse_sqr);
+    public double getPerimeter() {
+        int hypotenuse_sqr = this.width * this.width + this.height * this.height;
+        double hypotenuse = Math.sqrt((double) hypotenuse_sqr);
         return this.width + this.height + hypotenuse;
 
     }
 
     @Override
-    public double getWidth() {
+    public int getWidth() {
         return this.width;
     }
 
     @Override
-    public double getHeight() {
+    public int getHeight() {
         return this.height;
     }
-
+    @Override
     public boolean equals(Shape other) {
         if (other.getClass() == this.getClass()) {
-            if (other.getWidth() == this.getWidth() && other.getWidth() == this.getHeight()) {
+            if (other.getWidth() == this.getWidth() && other.getHeight() == this.getHeight()) {
                 return true;
             }
         }
